@@ -1,18 +1,21 @@
-client_id = "your-client-id"
-name = "Shopify Product Stats"
-handle = "shopify-product-stats"
-application_url = "https://your-app-url.com"
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "78913995e14ddaac9bcc4ae2afa9801b"
+name = "Product Stats Assignment"
+application_url = "https://shopify.dev/apps/default-app-home"
 embedded = true
+handle = "shopify-product-stats"
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "your-test-store.myshopify.com"
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2026-04"
 
 [access_scopes]
-# Leave empty or add required scopes
-scopes = "read_products"
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
 
 [auth]
-redirect_urls = [
-  "https://your-app-url.com/auth/callback"
-]
+redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
