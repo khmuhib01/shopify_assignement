@@ -1,32 +1,44 @@
-# Shopify Product Stats Assignment
+# Shopify Product Stats Assignment - Full Stack
 
-This repository contains both the Backend API and the Shopify Theme App Extension for the Product Stats assignment.
+This repository contains the full source code for the Shopify Technical Interview Assignment. It consists of two main components: a **Shopify Product Page Extension** and a **Laravel REST API Backend**.
 
 ## Project Structure
-- **/shopify_product_laravel**: Laravel REST API backend.
-- **/shopify_product_app**: Shopify Theme App Extension.
 
-## Quick Links
-- [Backend Documentation & Deployment Guide](./shopify_product_laravel/README.md)
-- [Shopify Extension Setup Guide](./shopify_product_app/README.md)
+| Component | Path | Description |
+|-----------|------|-------------|
+| **Backend API** | `shopify-product-stats-backend/` | Laravel 11 project with REST endpoints and MySQL schema. |
+| **Shopify Extension** | `shopify-product-extension/` | Shopify Extension project featuring React components and event tracking. |
 
-## How to Run Locally
+## Quick Start
 
-### 1. Start Backend API
-```bash
-cd shopify_product_laravel
-php artisan serve --no-reload
-```
-- **Login**: admin@admin.com / 12345
-- **Stats URL**: http://127.0.0.1:8000/api/product/1/stats
+### 1. Backend Setup
+Navigate to the `shopify-product-stats-backend` directory and follow these steps:
+1. `composer install`
+2. `cp .env.example .env` (Configure your MySQL database here)
+3. `php artisan key:generate`
+4. `php artisan migrate:fresh --seed`
+5. `php artisan serve`
 
-### 2. Run Shopify Extension
-```bash
-cd shopify_product_app
-npx shopify app dev
-```
-Or test manually using the [Test Page](./test_extension.html).
+*Default Admin Credentials:*  
+**Email:** `admin@admin.com`  
+**Password:** `12345`
 
-### 3. Database
-- MySQL database: `shopify_extensions`
-- Seeders included for Admin and Products.
+### 2. Extension Setup
+Navigate to the `shopify-product-extension` directory and follow these steps:
+1. `npm install`
+2. Bundle React: `npx esbuild src/index.js --bundle --minify --outfile=extensions/product-stats/assets/product-stats-bundle.js --loader:.js=jsx --loader:.jsx=jsx --platform=browser`
+3. `npx shopify app dev`
+4. Enable the "Product Stats Box" in your Shopify Theme Editor.
+
+## Requirements Checklist
+- [x] **Shopify extension** on product page
+- [x] **React components** for stats display
+- [x] **Event tracking** (View & Purchase)
+- [x] **Laravel REST API** endpoints
+- [x] **MySQL** database design
+- [x] **Input validation** and Clean controllers
+- [x] **README** with setup/deployment instructions
+
+---
+**Candidate:** [Your Name/Email]  
+**Submission Date:** March 15, 2026
