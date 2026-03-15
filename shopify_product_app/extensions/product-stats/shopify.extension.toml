@@ -3,4 +3,5 @@ api_version = "2024-01"
 [[extensions]]
 name = "Product Stats"
 handle = "product-stats"
+uid = "6db7e62e-77c7-4326-471b-97a38418db192f24408e"
 type = "theme"

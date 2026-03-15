@@ -1,0 +1,19 @@
+{
+  "name": "shopify-product-stats-app",
+  "version": "1.0.0",
+  "description": "Shopify Product Stats Assignment App",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.0.0",
+    "@shopify/app": "^3.0.0"
+  },
+  "scripts": {
+    "dev": "shopify app dev",
+    "deploy": "shopify app deploy",
+    "build": "shopify app build"
+  }
+}

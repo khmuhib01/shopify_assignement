@@ -1,13 +1,14 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "78913995e14ddaac9bcc4ae2afa9801b"
-name = "Product Stats Assignment"
+client_id = "07af90318fa7dbd84c27b715ff600e2e"
+name = "Test Store"
 application_url = "https://shopify.dev/apps/default-app-home"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
 dev_store_url = "khmuhib-dev.myshopify.com"
+include_config_on_deploy = true
 
 [webhooks]
 api_version = "2026-04"

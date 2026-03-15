@@ -4,7 +4,7 @@
   <!-- React will render here -->
 </div>
 
-{{ 'product-stats-bundle.js' | asset_url | script_tag }}
+<script src="{{ 'product-stats-bundle.js' | asset_url }}" defer></script>
 
 <style>
   .shopify-product-stats-box {
