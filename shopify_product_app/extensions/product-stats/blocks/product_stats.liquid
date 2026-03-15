@@ -1,0 +1,104 @@
+<div id="shopify-product-stats" class="shopify-product-stats-box" 
+     data-product-id="{{ product.id }}" 
+     data-api-url="{{ block.settings.api_url }}">
+  <div class="stats-loading">Loading statistics...</div>
+  <div class="stats-content" style="display: none;">
+    <div class="stats-row">
+      <span class="stats-label">Product Views:</span>
+      <span class="stats-value" id="stats-views-today">0</span>
+    </div>
+    <div class="stats-row">
+      <span class="stats-label">Purchases (Today):</span>
+      <span class="stats-value" id="stats-purchases-today">0</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .shopify-product-stats-box {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  .stats-label {
+    font-weight: 600;
+    color: #5c5f62;
+  }
+  .stats-value {
+    color: #202223;
+  }
+</style>
+
+<script>
+  (function() {
+    const container = document.getElementById('shopify-product-stats');
+    const productId = container.getAttribute('data-product-id');
+    const apiUrl = container.getAttribute('data-api-url') || 'http://localhost:8000';
+
+    // 1. Send View Event
+    fetch(`${apiUrl}/api/product/view`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product_id: productId })
+    }).catch(err => console.error('Failed to send view event', err));
+
+    // 2. Fetch Stats
+    function fetchStats() {
+      fetch(`${apiUrl}/api/product/${productId}/stats`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('stats-views-today').innerText = data.views_today;
+          document.getElementById('stats-purchases-today').innerText = data.purchases_today;
+          container.querySelector('.stats-loading').style.display = 'none';
+          container.querySelector('.stats-content').style.display = 'block';
+        })
+        .catch(err => {
+          container.querySelector('.stats-loading').innerText = 'Statistics unavailable';
+          console.error('Failed to fetch stats', err);
+        });
+    }
+
+    fetchStats();
+
+    // 3. Track Purchase (Add to Cart)
+    // Most Shopify themes use a form with action="/cart/add"
+    const addToCartForm = document.querySelector('form[action$="/cart/add"]');
+    if (addToCartForm) {
+      addToCartForm.addEventListener('submit', function() {
+        fetch(`${apiUrl}/api/product/purchase`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ product_id: productId })
+        }).catch(err => console.error('Failed to send purchase event', err));
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product Stats Box",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "api_url",
+      "label": "Backend API URL",
+      "default": "http://localhost:8000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Stats Box"
+    }
+  ]
+}
+{% endschema %}

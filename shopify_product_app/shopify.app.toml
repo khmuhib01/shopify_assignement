@@ -1,0 +1,18 @@
+client_id = "your-client-id"
+name = "Shopify Product Stats"
+handle = "shopify-product-stats"
+application_url = "https://your-app-url.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "your-test-store.myshopify.com"
+
+[access_scopes]
+# Leave empty or add required scopes
+scopes = "read_products"
+
+[auth]
+redirect_urls = [
+  "https://your-app-url.com/auth/callback"
+]

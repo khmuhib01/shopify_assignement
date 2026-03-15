@@ -1,0 +1,28 @@
+# Root GitIgnore
+
+# Laravel
+/shopify_product_laravel/.env
+/shopify_product_laravel/vendor
+/shopify_product_laravel/node_modules
+/shopify_product_laravel/public/storage
+/shopify_product_laravel/storage/*.key
+/shopify_product_laravel/storage/framework/cache/data/*
+/shopify_product_laravel/storage/framework/sessions/*
+/shopify_product_laravel/storage/framework/views/*
+/shopify_product_laravel/storage/logs/*
+/shopify_product_laravel/public/assets/img/*
+!/shopify_product_laravel/public/assets/img/.gitkeep
+
+# Shopify App / Node
+/shopify_product_app/node_modules
+/shopify_product_app/.shopify
+/shopify_product_app/.env
+/shopify_product_app/dist
+
+# Legacy React App
+/shopify_product_extension_reactks/node_modules
+/shopify_product_extension_reactks/dist
+
+# OS files
+.DS_Store
+Thumbs.db

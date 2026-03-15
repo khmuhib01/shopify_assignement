@@ -1,0 +1,6 @@
+api_version = "2024-01"
+
+[[extensions]]
+name = "Product Stats"
+handle = "product-stats"
+type = "theme"
